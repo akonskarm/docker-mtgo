@@ -1,6 +1,12 @@
 FROM panard/wine:9.14-wow64
 CMD mtgo
 
+RUN dpkg --add-architecture i386 && apt update && apt install -y \
+    mesa-vulkan-drivers mesa-vulkan-drivers:i386 \
+    libgl1-mesa-dri libgl1-mesa-dri:i386 \
+    libvulkan1 libvulkan1:i386 \
+    libgl1 libgl1:i386
+
 ENV WINE_USER wine
 ENV WINE_UID 1000
 ENV WINEPREFIX /home/wine/.wine
@@ -41,3 +47,6 @@ RUN cd .wine && mkdir host \
 RUN mkdir -p \
     /home/wine/.wine/drive_c/users/wine/Documents\
     /home/wine/.wine/host/wine/Documents
+
+RUN winetricks -q dxvk
+RUN winetricks sound=disabled
