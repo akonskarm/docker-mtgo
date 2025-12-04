@@ -67,6 +67,8 @@ workaround_dotnet
 
 setup="/opt/mtgo/mtgo.exe"
 
+export WINEDLLOVERRIDES="d3d11,dxgi=n" 
+export WINEDEBUG=-all
 run wine ${setup}
 started=0
 s=6
