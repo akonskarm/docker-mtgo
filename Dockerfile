@@ -50,3 +50,4 @@ RUN mkdir -p \
 
 RUN winetricks -q dxvk
 RUN winetricks sound=disabled
+RUN winetricks vd=1920x1080
